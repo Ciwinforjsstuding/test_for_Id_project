@@ -1,0 +1,3 @@
+<template>
+  <ProductCardContainer />
+</template>
