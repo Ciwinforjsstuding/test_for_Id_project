@@ -3,5 +3,4 @@
 npm install
 ***
 запуск: 
-*** 
 npm run dev
