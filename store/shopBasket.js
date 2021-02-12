@@ -4,6 +4,7 @@ export const state = () => ({
   counterProducts: 0,
   isValidForm: true,
   showSuccessBasacket: false,
+  tyrAddDoubleProduct: false,
 });
 
 export const mutations = {
@@ -15,8 +16,15 @@ export const mutations = {
     state.productsOnBasket = state.productsOnBasket.filter(elem => elem.id !== id);
     state.counterProducts = state.productsOnBasket.length;
   },
+  clearBasket(state) {
+    state.productsOnBasket = [];
+    state.counterProducts = 0
+  },
   basketHalder(state) {
     state.isBasketopen = !state.isBasketopen;
+  },
+  tyrAddDoubleProductHandler(state, newValue) {
+    state.tyrAddDoubleProduct = newValue;
   },
   formHandler(state, newValid) {
     state.isValidForm = newValid;
@@ -32,4 +40,5 @@ export const getters = {
   getCounterProducts: s => s.counterProducts,
   getIsValidForm: s => s.isValidForm,
   getShowSuccessBasacket: s => s.showSuccessBasacket,
+  getTyrAddDoubleProduct: s => s.tyrAddDoubleProduct,
 };

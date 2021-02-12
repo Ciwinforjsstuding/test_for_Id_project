@@ -78,7 +78,8 @@ export default {
         this.phone = "";
         this.address = "";
         await setTimeout(() => this.$store.commit("shopBasket/successBasackethandler", false), 3000);
-        return this.$store.commit("shopBasket/formHandler", true);
+        // костыльно выглядит , подумай как сделать лучше
+        await setTimeout(() => this.$store.commit("shopBasket/clearBasket"), 3000);
       } else {
         this.$store.commit("shopBasket/formHandler", false);
         await setTimeout(() => this.$store.commit("shopBasket/formHandler", true), 2000);

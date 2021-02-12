@@ -48,13 +48,20 @@ import { mapGetters } from 'vuex';
 export default {
   computed: mapGetters({
     getUrlFromPhoto: "url/getUrlFromPhoto",
+    getProductsOnBasket: "shopBasket/getProductsOnBasket",
   }),
   props: {
     product: Object,
   },
   methods: {
-    wrapperFn(product) {
-      this.$store.commit("shopBasket/addProductOnBascket", product);
+    async wrapperFn(product) {
+      const isRepeatProduct = this.getProductsOnBasket.find((elem) => elem.id === product.id);
+      if (isRepeatProduct) {
+        this.$store.commit("shopBasket/tyrAddDoubleProductHandler", true);
+        await setTimeout(() => this.$store.commit("shopBasket/tyrAddDoubleProductHandler", false), 3000);
+      } else {
+        this.$store.commit("shopBasket/addProductOnBascket", product);
+      }
     }
   }
 }

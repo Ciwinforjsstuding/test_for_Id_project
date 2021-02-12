@@ -1,5 +1,6 @@
 <template>
   <header :class="$style.header">
+    <Warning v-if="getTyrAddDoubleProduct"/>
     <span :class="$style.header__title_text">TestList</span>
     <div :class="$style.header__icon_wrapper" @click="basketHalder">
       <img src="../static/basket.svg" :class="$style.header__icon" alt="корзина">
@@ -10,17 +11,19 @@
 </template>
 <script>
 import BasketProduct from './BascketProduct/BasketProduct.vue';
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex';
 export default {
   methods: {
     ...mapMutations({
       basketHalder: "shopBasket/basketHalder"
-    })
+    }),
+    
   },
   computed: {
     ...mapGetters({
       getStateBasketProduct: "shopBasket/getStateBasketProduct",
       getCounterProducts: "shopBasket/getCounterProducts",
+      getTyrAddDoubleProduct: "shopBasket/getTyrAddDoubleProduct"
     })
   },
 } 
